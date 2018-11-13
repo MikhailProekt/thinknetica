@@ -1,5 +1,5 @@
 puts "Введите основание треугольника a:"
-a = gets.strip.to_i
+a = gets.chomp.to_f
 puts "Введите высоту треугольника h:"
-h = gets.strip.to_i
+h = gets.chomp.to_f
 puts "Площадь треугольника: #{(a * h)/2}"

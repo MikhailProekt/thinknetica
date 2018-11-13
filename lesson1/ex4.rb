@@ -1,19 +1,18 @@
 puts "Введите коэффициент а:"
-a = gets.strip.to_i
+a = gets.to_f
 puts "Введите коэффициент b:"
-b = gets.strip.to_i
+b = gets.to_f
 puts "Введите коэффициент c:"
-c = gets.strip.to_i
-e = 4*a*c
-f = b**2
-d = f - e
+c = gets.to_f
+d = b ** 2 - 4 * a * c
 if d < 0
   puts "Дискриминант: #{d}, корней нет"
 elsif d == 0
-  x = -b/(2*a)
+  x = -b / ( 2 * a )
   puts "Дискриминант: #{d}, корни равны #{x}"
 else
-  x1 = (-b + Math.sqrt(d))/(2*a)
-  x2 = (-b - Math.sqrt(d))/(2*a)
+  e = Math.sqrt(d)
+  x1 = ( -b + e ) / ( 2 * a )
+  x2 = ( -b - e ) / ( 2 * a )
   puts "Дискриминант: #{d}, корни уравнения: #{x1},#{x2}"
 end
