@@ -1,7 +1,1 @@
-arr = []
-i = 10
-while i <= 100
-  arr << i
-  i += 5
-end
-puts arr
+(10..100).step(5) { |value| puts value }
