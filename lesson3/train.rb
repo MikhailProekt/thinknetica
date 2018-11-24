@@ -11,39 +11,47 @@ class Train
   end
 
   def add_speed(speed)
-    self.speed += speed
+    @speed += speed
   end
 
   def stop
-    self.speed = 0
+    speed = 0
   end
 
-  def show_speed
-    puts "#{self.speed}"
+  def current_speed
+    speed
   end
 
   def add_carriages
-    @carriages += 1 if self.speed == 0 
+    carriages += 1 if speed == 0 
   end
 
   def delete_carriages
-    @carriages -= 1 if self.speed == 0
+    carriages -= 1 if speed == 0 && carriages > 0
   end
 
   def route=(route)
     @route = route
-    self.station = self.route.route_list.first
+    station = route.stations.first
+  end
+
+  def move_next_station
+    station = route.stations[route.stations.index(station) + 1]
+  end
+
+  def move_previous_station
+    station = route.stations[route.stations.index(station) - 1]
   end
 
   def next_station
-    self.route.route_list[self.route.route_list.index(self.station) + 1]
+    route.stations[route.stations.index(station) + 1]
   end
 
   def previous_station
-    self.route.route_list[self.route.route_list.index(self.station) - 1]
+    route.stations[route.stations.index(station) - 1]
   end
 
   def current_station
-    self.station = self.route.route_list[self.route.route_list.index(self.station) + 1]
+    station
   end
 end
