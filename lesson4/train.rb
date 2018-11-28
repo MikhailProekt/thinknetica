@@ -37,25 +37,25 @@ class Train
   end
 
   def move_next_station
-    return if @stations == @route.stations.size - 1
-    if @stations.nil?
-      @stations = 0
+    return if @station == @route.stations.size - 1
+    if @station.nil?
+      @station = 0
     else
-      @stations += 1
-    @route.stations[@stations].add_train(self)
-    @route.stations[@stations-1].send_train(self) 
-    end
+      @station += 1
+    end  
+    @route.stations[@station].add_train(self)
+    @route.stations[@station - 1].send_train(self) 
   end
 
   def move_previous_station
-    return if @stations == 0
-    if @stations.nil?
-      @stations = @route.stations.size - 1
+    return if @station == 0
+    if @station.nil?
+      @station = @route.stations.size - 1
     else
-      @stations -= 1
+      @station -= 1
     end
-    @route.stations[@stations].add_train(self)
-    @route.stations[@stations+1].send_train(self)
+    @route.stations[@station].add_train(self)
+    @route.stations[@station + 1].send_train(self)
   end
 
   def next_station
@@ -67,6 +67,6 @@ class Train
   end
 
   def current_station
-    @route[@station]
+    @route.stations[@station]
   end
 end

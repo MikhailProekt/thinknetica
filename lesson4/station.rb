@@ -15,7 +15,7 @@ class Station
     @trains_list.each { |train| puts train }
   end
 
-  def trains_list_type(type)
+  def trains_list_type(type = nil)
     if type.nil?
       return @trains_list
     else

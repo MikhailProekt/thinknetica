@@ -396,10 +396,10 @@ class Operator
 
     if input == '1'
       train.move_next_station
-      puts "Поезд был перемещен вперёд на станцию #{train.route.stations[train.current_station].station_name}"
+      puts "Поезд был перемещен вперёд на станцию #{train.current_station.station_name}"
     elsif input == '2'
       train.move_previous_station
-      puts "Поезд был перемещен назад на станцию #{train.route.stations[train.current_station].station_name}"
+      puts "Поезд был перемещен назад на станцию #{train.current_station.station_name}"
     else
       puts 'Выбор неверный, перемещения не произошло'
       return
@@ -410,7 +410,7 @@ class Operator
     puts 'Список станций и поездов: '
     @stations.each.with_index(1) do |station, index|
       puts "#{index}: #{station.station_name}"
-      trains = station.show_trains_list
+      trains = station.trains_list_type
       trains.each.with_index(1) do |train, index_train|
         puts " #{index_train}: Поезд номер #{train.number}"
       end
