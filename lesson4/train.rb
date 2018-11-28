@@ -4,7 +4,7 @@ class Train
   attr_reader :number, :carriages, :route
 
   def initialize(number)
-    @number = number
+    @number = number >= 0 ? number : 0
     @carriages = []
     @speed = 0
     @route
@@ -31,41 +31,42 @@ class Train
     @carriages.delete(carriage) if speed.zero? && @carriages.any?
   end
 
-  def route=(route)
+  def set_route(route)
     @route = route
-    @station = route.stations.first
+    @station = 0
   end
 
   def move_next_station
-    return if route.stations.index(station) == @route.stations.size - 1
-    if @station.nil?
-      @station = route.stations[0]
+    return if @stations == @route.stations.size - 1
+    if @stations.nil?
+      @stations = 0
     else
-      @station = route.stations[route.stations.index(station) + 1]
+      @stations += 1
+    @route.stations[@stations].add_train(self)
+    @route.stations[@stations-1].send_train(self) 
     end
-    #@station = route.stations[route.stations.index(station)]
-
   end
 
   def move_previous_station
-    return if route.stations[route.stations.index(station)] == 0
-    if @station.nil?
-      @station = route.stations[0]
+    return if @stations == 0
+    if @stations.nil?
+      @stations = @route.stations.size - 1
     else
-      @station = route.stations[route.stations.index(station) - 1]
+      @stations -= 1
     end
-    #@station = route.stations[route.stations.index(station)]
+    @route.stations[@stations].add_train(self)
+    @route.stations[@stations+1].send_train(self)
   end
 
   def next_station
-    route.stations[route.stations.index(station) + 1]
+    @station + 1 <= @route.stations.size - 1 ? station + 1 : @station
   end
 
   def previous_station
-    route.stations[route.stations.index(station) - 1]
+    @station - 1 >= 0 ? station - 1 : @station
   end
 
   def current_station
-    @station
+    @route[@station]
   end
 end

@@ -250,7 +250,7 @@ class Operator
     route = find_route_number(route_number)
 
     if !route.nil?
-      train.route = route
+      train.set_route(route)
       puts "Поезду #{train_number} установлен маршрут #{route.stations.first.station_name} - #{route.stations.last.station_name} "
     else
       puts "Маршрута с номером #{route_number} нет"
@@ -392,15 +392,14 @@ class Operator
     return if !train
 
     puts 'Введите 1 для перемещения поезда вперёд по маршруту, 2 - назад:'
-    input1 = gets.strip
+    input = gets.strip
 
-    if input1 == '1'
-      current = train.move_next_station
-      puts "Поезд был перемещен вперёд на станцию #{current.station_name}"
-      # puts "Поезд был перемещен вперёд на станцию #{train.route.stations[train.current_station].station_name}"
-    elsif input1 == '2'
-      current = train.move_previous_station
-      puts "Поезд был перемещен назад на станцию #{current.station_name}"
+    if input == '1'
+      train.move_next_station
+      puts "Поезд был перемещен вперёд на станцию #{train.route.stations[train.current_station].station_name}"
+    elsif input == '2'
+      train.move_previous_station
+      puts "Поезд был перемещен назад на станцию #{train.route.stations[train.current_station].station_name}"
     else
       puts 'Выбор неверный, перемещения не произошло'
       return

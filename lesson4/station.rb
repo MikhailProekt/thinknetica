@@ -1,6 +1,6 @@
 class Station
 
-  attr_reader :station_name
+  attr_reader :station_name, :trains_list
 
   def initialize(station_name)
     @station_name = station_name
@@ -15,7 +15,7 @@ class Station
     @trains_list.each { |train| puts train }
   end
 
-  def trains_list_type(type = nil)
+  def trains_list_type(type)
     if type.nil?
       return @trains_list
     else
