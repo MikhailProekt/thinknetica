@@ -12,12 +12,12 @@ class Station
   end
 
   def show_trains_list
-    @trains_list.each { |train| puts train }
+    puts @trains_list
   end
 
   def trains_list_type(type = nil)
     if type.nil?
-      return @trains_list
+      @trains_list
     else
       @trains_list.select { |train| train.type == type }
     end

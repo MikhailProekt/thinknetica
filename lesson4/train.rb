@@ -7,8 +7,8 @@ class Train
     @number = number >= 0 ? number : 0
     @carriages = []
     @speed = 0
-    @route
-    @station
+    #@route
+    #@station
   end
 
   def add_speed(speed)

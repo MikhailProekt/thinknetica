@@ -118,9 +118,9 @@ class Operator
   end
 
   def show_carriages(type)
-    if type == PassengerCarriages
+    if type == PassengerCarriage
       puts 'Список пассажирских вагонов:'
-    elsif type == CargoCarriages
+    elsif type == CargoCarriage
       puts 'Список грузовых вагонов:'
     end
 
@@ -249,11 +249,11 @@ class Operator
     route_number = gets.strip
     route = find_route_number(route_number)
 
-    if !route.nil?
+    if route.nil?
+      puts "Маршрута с номером #{route_number} нет"
+    else
       train.set_route(route)
       puts "Поезду #{train_number} установлен маршрут #{route.stations.first.station_name} - #{route.stations.last.station_name} "
-    else
-      puts "Маршрута с номером #{route_number} нет"
     end
   end
 
@@ -265,10 +265,10 @@ class Operator
     carriage_number = gets.to_i
 
     if input == '1'
-      carriage = PassengerCarriages.new(carriage_number)
+      carriage = PassengerCarriage.new(carriage_number)
       @carriages.push(carriage)
     elsif input == '2'
-      carriage = CargoCarriages.new(carriage_number)
+      carriage = CargoCarriage.new(carriage_number)
       @carriages.push(carriage)
     else
       puts 'Выбор неверный, вагон не создан'
@@ -305,9 +305,9 @@ class Operator
     return if !train
 
     if input == '1'
-      show_carriages(PassengerCarriages)
+      show_carriages(PassengerCarriage)
     elsif input == '2'
-      show_carriages(CargoCarriages)
+      show_carriages(CargoCarriage)
     else
       puts 'Выбор неверный, добавления не произошло'
       return
@@ -316,9 +316,9 @@ class Operator
     puts 'Введите номер вагона:'
     carriage_number = gets.to_i
     if input == '1'
-      carriage = find_carriage(carriage_number, PassengerCarriages)
+      carriage = find_carriage(carriage_number, PassengerCarriage)
     elsif input == '2'
-      carriage = find_carriage(carriage_number, CargoCarriages)
+      carriage = find_carriage(carriage_number, CargoCarriage)
     end
 
     if carriage
@@ -363,7 +363,7 @@ class Operator
       train.delete_carriages(carriage)
       puts "От поезда #{train.number} был отцеплен вагон #{carriage.number}"
     else
-      puts "От поезда #{train.number} не был отцеплен вагон #{carriage.number}"
+      puts "От поезда #{train.number} не был отцеплен вагон #{carriage_number}"
     end
   end
 

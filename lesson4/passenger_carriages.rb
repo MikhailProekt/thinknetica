@@ -1,2 +1,0 @@
-class PassengerCarriages < Carriages
-end
