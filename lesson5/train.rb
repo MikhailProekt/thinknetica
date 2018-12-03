@@ -5,7 +5,7 @@ class Train
   @@trains = {}
 
   def self.find(train_number)
-    @@trains[train_number] ||= nil
+    @@trains[train_number]
   end
 
   attr_accessor :speed, :station
