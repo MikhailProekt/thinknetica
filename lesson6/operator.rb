@@ -139,20 +139,14 @@ class Operator
   end
 
   def new_station
-    begin
-      puts 'Введите название станции:'
-      station_name = gets.strip
-      if station_name.empty?
-        puts "Станция не создана, название станции должно быть введено"
-      else
-        station = Station.new(station_name)
-        @stations.push(station)
-        puts "Станция #{station_name} создана"
-      end
-    rescue RuntimeError => e
-      puts e.message
-      retry
-    end
+    puts 'Введите название станции:'
+    station_name = gets.strip
+    station = Station.new(station_name)
+    @stations.push(station)
+    puts "Станция #{station_name} создана"
+  rescue RuntimeError => e
+    puts e.message
+    retry
   end
 
   def new_train
