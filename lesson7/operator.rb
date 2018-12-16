@@ -201,19 +201,19 @@ class Operator
   end
 
   def show_passenger_carriage_free_places(carriage)
-    puts "Свободно #{carriage.number_of_places - carriage.taken_places} мест"
+    puts "Свободно #{carriage.capacity - carriage.occupied_capacity} мест"
   end
 
   def show_passenger_carriage_taken_places(carriage)
-    puts "Занято #{carriage.taken_places} мест"
+    puts "Занято #{carriage.occupied_capacity} мест"
   end
 
   def show_cargo_carriage_free_volume(carriage)
-    puts "Свободный объем #{carriage.volume - carriage.taken_volume}"
+    puts "Свободный объем #{carriage.capacity - carriage.occupied_capacity}"
   end
 
   def show_cargo_carriage_taken_volume(carriage)
-    puts "Занятый объем #{carriage.taken_volume}"
+    puts "Занятый объем #{carriage.occupied_capacity}"
   end
 
   def new_station
@@ -364,15 +364,15 @@ class Operator
 
       if input == '1'
         puts 'Введите количество мест в вагоне:'
-        number_of_places = gets.to_i
+        capacity = gets.to_i
 
-        carriage = PassengerCarriage.new(carriage_number, number_of_places)
+        carriage = PassengerCarriage.new(carriage_number, capacity)
         @carriages.push(carriage)
       elsif input == '2'
         puts 'Введите объём:'
-        volume = gets.to_i
+        capacity = gets.to_i
 
-        carriage = CargoCarriage.new(carriage_number, volume)
+        carriage = CargoCarriage.new(carriage_number, capacity)
         @carriages.push(carriage)
       else
         puts 'Выбор неверный, вагон не создан'
@@ -521,11 +521,11 @@ class Operator
     carriage_number = gets.to_i
 
     carriage = find_carriage(carriage_number, PassengerCarriage)
-    if carriage && carriage.number_of_places > carriage.taken_places
-      carriage.taken_places += 1
-      puts "В вагоне было занято 1 место, всего мест #{carriage.number_of_places}, занято мест #{carriage.taken_places}"
+    if carriage && carriage.capacity > carriage.occupied_capacity
+      carriage.occupied_capacity += 1
+      puts "В вагоне было занято 1 место, всего мест #{carriage.capacity}, занято мест #{carriage.occupied_capacity}"
     else
-      puts "Не удалось занять место, всего мест #{carriage.number_of_places}, занято мест #{carriage.taken_places}"
+      puts "Не удалось занять место, всего мест #{carriage.capacity}, занято мест #{carriage.occupied_capacity}"
     end
   end
 
@@ -538,13 +538,13 @@ class Operator
     carriage = find_carriage(carriage_number, CargoCarriage)
 
     puts "Введите занимаемый объём:"
-    volume_need = gets.to_i
+    capacity_need = gets.to_i
 
-    if carriage && carriage.volume >= carriage.taken_volume + volume_need
-      carriage.taken_volume += volume_need
-      puts "В вагоне было занято #{volume_need} объёма, всего объёма #{carriage.volume}, занято объёма #{carriage.taken_volume}"
+    if carriage && carriage.capacity >= carriage.occupied_capacity + capacity_need
+      carriage.occupied_capacity += capacity_need
+      puts "В вагоне было занято #{capacity_need} объёма, всего объёма #{carriage.capacity}, занято объёма #{carriage.occupied_capacity}"
     else
-      puts "Не удалось занять объём, всего объёма #{carriage.volume}, занято объёма #{carriage.taken_volume}"
+      puts "Не удалось занять объём, всего объёма #{carriage.capacity}, занято объёма #{carriage.occupied_capacity}"
     end
   end
 end

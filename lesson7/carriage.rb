@@ -5,10 +5,13 @@ class Carriage
   # Номер вагона - только число
   NUMBER_CARRIAGE = /^\d+$/
 
-  attr_reader :number
+  attr_reader :number, :capacity
+  attr_accessor :occupied_capacity
 
-  def initialize(number)
+  def initialize(number, capacity)
     @number = number
+    @capacity = capacity
+    @occupied_capacity ||= 0
     check!
   end
 
