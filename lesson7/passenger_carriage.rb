@@ -3,10 +3,9 @@ class PassengerCarriage < Carriage
   attr_accessor :taken_places
 
   def initialize(number, number_of_places)
-    @number = number
+    super(number)
     @number_of_places = number_of_places
     @taken_places ||= 0
-    check!
     check_passenger!
   end
 

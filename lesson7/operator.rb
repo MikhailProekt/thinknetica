@@ -169,7 +169,7 @@ class Operator
     end
 
     puts "Введите номер поезда"
-    train_number = gets.to_i
+    train_number = gets.strip
 
     train_type = nil
     if input == 1
@@ -237,7 +237,7 @@ class Operator
 
     begin
       puts 'Введите номер поезда'
-      train_number = gets.to_i
+      train_number = gets.strip
 
       if train_type == 1
         train = PassengerTrain.new(train_number)
@@ -325,7 +325,7 @@ class Operator
     end
 
     puts 'Введите номер поезда:'
-    train_number = gets.to_i
+    train_number = gets.strip
 
     train_type = nil
     if input == '1'
@@ -402,7 +402,7 @@ class Operator
     end
 
     puts 'Введите номер поезда:'
-    train_number = gets.to_i
+    train_number = gets.strip
 
     if input == '1'
       train = find_train(train_number, PassengerTrain)
@@ -451,7 +451,7 @@ class Operator
     end
 
     puts 'Введите номер поезда:'
-    train_number = gets.to_i
+    train_number = gets.strip
 
     if input == '1'
       train = find_train(train_number, PassengerTrain)
@@ -489,7 +489,7 @@ class Operator
     end
 
     puts 'Введите номер поезда:'
-    train_number = gets.to_i
+    train_number = gets.strip
 
     if input == '1'
       train = find_train(train_number, PassengerTrain)

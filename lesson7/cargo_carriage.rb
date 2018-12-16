@@ -3,10 +3,9 @@ class CargoCarriage < Carriage
   attr_accessor :taken_volume
 
   def initialize(number, volume)
-    @number = number
+    super(number)
     @volume = volume
     @taken_volume ||= 0
-    check!
     check_cargo!
   end
 
