@@ -1,5 +1,4 @@
 class CargoCarriage < Carriage
-
   def initialize
     super
     check_cargo!

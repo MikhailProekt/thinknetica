@@ -1,5 +1,4 @@
 class PassengerCarriage < Carriage
-
   def initialize
     super
     check_passenger!

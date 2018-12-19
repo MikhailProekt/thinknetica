@@ -50,6 +50,7 @@ class Train
 
   def move_next_station
     return if @station == @route.stations.size - 1
+
     if @station.nil?
       @station = 0
     else
@@ -61,6 +62,7 @@ class Train
 
   def move_previous_station
     return if @station.zero?
+
     if @station.nil?
       @station = @route.stations.size - 1
     else

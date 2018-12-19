@@ -59,7 +59,7 @@ class Operator
   end
 
   protected
-  
+
   def find_station_name(station_name)
     @stations.each do |station|
       return station if station.station_name == station_name
@@ -211,7 +211,7 @@ class Operator
   end
 
   def new_train
-    puts 'Введите' 
+    puts 'Введите'
     puts '1 для создания пассажирского поезда,'
     puts '2 для грузового'
     train_type = gets.to_i
@@ -235,9 +235,8 @@ class Operator
 
     return unless train
 
-      print train_type == 1 ? 'Пассажирский ' : 'Грузовой '
-      puts "поезд номер #{train_number} создан"
-    end
+    print train_type == 1 ? 'Пассажирский ' : 'Грузовой '
+    puts "поезд номер #{train_number} создан"
   end
 
   def new_route
@@ -452,7 +451,7 @@ class Operator
       puts 'Нет поезда с таким номером'
       return
     end
- 
+
     puts 'Введите'
     puts '1 для перемещения поезда вперёд по маршруту,'
     puts '2 - назад:'

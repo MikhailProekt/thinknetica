@@ -12,7 +12,7 @@ class Route
   end
 
   def add_middle_station(station)
-    @stations.insert(@stations.size-1, station)
+    @stations.insert(@stations.size - 1, station)
   end
 
   def delete_middle_station(station)
