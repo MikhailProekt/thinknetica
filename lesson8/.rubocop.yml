@@ -13,13 +13,7 @@ Style/AsciiComments:
 Style/ClassVars:
     Enabled: false
 
-Naming/AccessorMethodName:
-    Enabled: false
-
 Metrics/ClassLength:
-    Enabled: false
-
-Layout/EmptyLinesAroundClassBody:
     Enabled: false
 
 Metrics/AbcSize:

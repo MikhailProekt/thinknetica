@@ -1,5 +1,4 @@
 class Operator
-
   def initialize
     @trains = []
     @carriages = []
@@ -319,7 +318,7 @@ class Operator
     if route.nil?
       puts "Маршрута с номером #{route_number} нет"
     else
-      train.set_route(route)
+      train.setroute(route)
       puts "Поезду #{train_number}"
       puts 'установлен маршрут'
       puts "#{route.stations.first.station_name} - #{route.stations.last.station_name} "

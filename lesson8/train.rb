@@ -43,7 +43,7 @@ class Train
     @carriages.delete(carriage) if speed.zero? && @carriages.any?
   end
 
-  def set_route(route)
+  def setroute(route)
     @route = route
     @station = 0
   end
