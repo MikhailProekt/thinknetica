@@ -5,7 +5,7 @@ require_relative 'user'
 require_relative 'dealer'
 require_relative 'bank'
 require_relative 'view'
-require_relative 'operator'
+require_relative 'game'
 
-operator = Operator.new
-operator.manage
+game = Game.new
+game.manage

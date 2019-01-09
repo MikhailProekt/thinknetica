@@ -1,4 +1,5 @@
-class Operator
+class Game
+  RATE = 10
   def manage
     @view = View.new
     name = @view.input_name
@@ -6,18 +7,22 @@ class Operator
     @dealer = Dealer.new
     @deck = Deck.new
     @bank = Bank.new
+    first_turn
+  end
+
+  def first_turn
+    @user.used_cards = []
+    @dealer.used_cards = []
+    @user.money -= RATE
+    @dealer.money -= RATE
+    @bank.money += RATE * 2
+    2.times { take_card(@user) }
+    2.times { take_card(@dealer) }
+    show_cards
     start_game
   end
 
   def start_game
-    @user.used_cards = []
-    @dealer.used_cards = []
-    @user.money -= @bank.rate
-    @dealer.money -= @bank.rate
-    @bank.money += @bank.rate * 2
-    2.times { take_card(@user) }
-    2.times { take_card(@dealer) }
-    show_cards
     loop do
       input = @view.input_action
       case input
@@ -40,10 +45,10 @@ class Operator
   def show_cards
     @view.show_user_cards(@user, @user.count_values)
     @user.used_cards.each { |card| @view.show_card(card) }
-    puts ''
+    @view.empty_string
     @view.show_dealer_cards
-    @dealer.used_cards.each { |_card| @view.show_dealer_skipped_card }
-    puts ''
+    @dealer.used_cards.each { @view.show_dealer_skipped_card }
+    @view.empty_string
   end
 
   def show_money
@@ -57,6 +62,7 @@ class Operator
     else
       show_cards
     end
+    start_game
   end
 
   def add_card
@@ -69,10 +75,10 @@ class Operator
     dealer_values = @dealer.count_values
     @view.show_user_cards(@user, user_values)
     @user.used_cards.each { |card| @view.show_card(card) }
-    puts ''
+    @view.empty_string
     @view.show_dealer_cards(dealer_values)
     @dealer.used_cards.each { |card| @view.show_card(card) }
-    puts ''
+    @view.empty_string
     count_money(user_values, dealer_values)
     show_money
     question
@@ -107,7 +113,7 @@ class Operator
 
   def question
     input = @view.play_again
-    start_game if input == 'y'
+    first_turn if input == 'y'
     abort
   end
 end

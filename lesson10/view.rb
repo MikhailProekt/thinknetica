@@ -32,6 +32,10 @@ class View
     print '* '
   end
 
+  def empty_string
+    puts ''
+  end
+
   def show_money(user, dealer)
     puts "#{user.name} money: #{user.money}"
     puts "dealer money: #{dealer.money}"
