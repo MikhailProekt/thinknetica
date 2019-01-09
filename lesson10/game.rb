@@ -93,17 +93,12 @@ class Game
   end
 
   def count_money(user_values, dealer_values)
-    if user_values > 21 && dealer_values > 21
+    if (user_values > 21 && dealer_values > 21) || (user_values == dealer_values)
       take_money(@user, @bank.money / 2)
       take_money(@dealer, @bank.money / 2)
     elsif user_values > 21 && dealer_values <= 21
       take_money(@dealer, @bank.money)
-    elsif user_values <= 21 && dealer_values > 21
-      take_money(@user, @bank.money)
-    elsif user_values == dealer_values
-      take_money(@user, @bank.money / 2)
-      take_money(@dealer, @bank.money / 2)
-    elsif user_values > dealer_values
+    elsif (user_values <= 21 && dealer_values > 21) || (user_values > dealer_values)
       take_money(@user, @bank.money)
     else
       take_money(@dealer, @bank.money)
