@@ -7,16 +7,15 @@ class Gamer
     @used_cards = []
   end
 
-  def count_values
-    count = 0
-    used_cards.each do |card|
-      count += card.values
-    end
+  def score
+    count = used_cards.map(&:values).reduce(0, :+)
 
-    return count if count <= 21
-
-    used_cards.each do |card|
-      count = count - card.values + card.other_values if count > 21 && !card.other_values.nil?
+    if count > 21
+      aces = used_cards.select { |card| card.name == 'T' }
+      aces.size.times do
+        count -= 10
+        return count if count <= 21
+      end
     end
     count
   end

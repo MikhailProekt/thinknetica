@@ -12,7 +12,7 @@ class View
     gets.strip.to_i
   end
 
-  def show_user_cards(user, values)
+  def show_user_cards(user, values = nil)
     puts "#{user.name} cards (#{values} values): "
   end
 
@@ -28,8 +28,8 @@ class View
     print "#{card.name} #{card.lear} "
   end
 
-  def show_dealer_skipped_card
-    print '* '
+  def how_dealer_skipped_card(amount)
+    print '* ' * amount
   end
 
   def empty_string

@@ -39,15 +39,19 @@ class Game
   end
 
   def take_card(gamer)
-    gamer.used_cards << @deck.cards.pop
+    if !@deck.cards.empty?
+      gamer.used_cards << @deck.cards.pop
+    else
+      abort
+    end
   end
 
   def show_cards
-    @view.show_user_cards(@user, @user.count_values)
+    @view.show_user_cards(@user, @user.score)
     @user.used_cards.each { |card| @view.show_card(card) }
     @view.empty_string
     @view.show_dealer_cards
-    @dealer.used_cards.each { @view.show_dealer_skipped_card }
+    @view.how_dealer_skipped_card(@dealer.used_cards.size)
     @view.empty_string
   end
 
@@ -56,7 +60,7 @@ class Game
   end
 
   def dealer_game
-    take_card(@dealer) if @dealer.count_values < 17
+    take_card(@dealer) if @dealer.score < 17
     if @user.used_cards.size == 3 || @dealer.used_cards.size == 3
       open_cards
     else
@@ -71,8 +75,8 @@ class Game
   end
 
   def open_cards
-    user_values = @user.count_values
-    dealer_values = @dealer.count_values
+    user_values = @user.score
+    dealer_values = @dealer.score
     @view.show_user_cards(@user, user_values)
     @user.used_cards.each { |card| @view.show_card(card) }
     @view.empty_string
@@ -92,16 +96,22 @@ class Game
     @bank.money = 0
   end
 
+  def find_winner(user_values, dealer_values)
+    return @user if dealer_values > 21
+    return @dealer if user_values > 21
+    return nil if dealer_values == user_values
+    return nil if dealer_values > 21 && user_values > 21
+
+    dealer_values > user_values ? @dealer : @user
+  end
+
   def count_money(user_values, dealer_values)
-    if (user_values > 21 && dealer_values > 21) || (user_values == dealer_values)
+    winner = find_winner(user_values, dealer_values)
+    if winner
+      take_money(winner, @bank.money)
+    else
       take_money(@user, @bank.money / 2)
       take_money(@dealer, @bank.money / 2)
-    elsif user_values > 21 && dealer_values <= 21
-      take_money(@dealer, @bank.money)
-    elsif (user_values <= 21 && dealer_values > 21) || (user_values > dealer_values)
-      take_money(@user, @bank.money)
-    else
-      take_money(@dealer, @bank.money)
     end
     bank_zero
   end

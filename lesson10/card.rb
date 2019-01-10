@@ -16,16 +16,11 @@ class Card
     'T' => 11
   }.freeze
 
-  CARDS_OTHER_VALUES = {
-    'T' => 1
-  }.freeze
+  attr_accessor :lear, :name, :values
 
-  attr_accessor :lear, :name, :values, :other_values
-
-  def initialize(lear, name, values, other_values)
+  def initialize(lear, name, values)
     @lear = lear
     @name = name
     @values = values
-    @other_values = other_values
   end
 end
