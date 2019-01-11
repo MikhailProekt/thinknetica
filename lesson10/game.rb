@@ -97,10 +97,10 @@ class Game
   end
 
   def find_winner(user_values, dealer_values)
+    return nil if dealer_values > 21 && user_values > 21
     return @user if dealer_values > 21
     return @dealer if user_values > 21
     return nil if dealer_values == user_values
-    return nil if dealer_values > 21 && user_values > 21
 
     dealer_values > user_values ? @dealer : @user
   end

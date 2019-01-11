@@ -8,15 +8,13 @@ class Gamer
   end
 
   def score
-    count = used_cards.map(&:values).reduce(0, :+)
+    total = used_cards.map(&:values).reduce(0, :+)
 
-    if count > 21
-      aces = used_cards.select { |card| card.name == 'T' }
-      aces.size.times do
-        count -= 10
-        return count if count <= 21
+    if total > 21
+      used_cards.count(&:ace?).times do
+        total -= 10 if total > 21
       end
     end
-    count
+    total
   end
 end

@@ -23,4 +23,8 @@ class Card
     @name = name
     @values = values
   end
+
+  def ace?
+    true if name == 'T'
+  end
 end
